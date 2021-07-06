@@ -36,10 +36,11 @@ jobs:
           #logout:
       
       - name: Get the tag name
-        run: echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
-        run: echo use env.TAG ${{ env.TAG}}
-        run: echo use github.event.ref ${{ github.event.ref}}
-        run: echo use github.event.release.tag_name ${{ github.event.release.tag_name}}
+        run: |
+          echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+          echo use env.TAG ${{ env.TAG}}
+          echo use github.event.ref ${{ github.event.ref}}
+          echo use github.event.release.tag_name ${{ github.event.release.tag_name}}
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v2.4.0
