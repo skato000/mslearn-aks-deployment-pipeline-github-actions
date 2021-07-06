@@ -39,4 +39,5 @@ jobs:
         uses: docker/build-push-action@v2.4.0
         with: 
           push: true
-          tags: ${{ secrets.ACR_NAME }}/contoso-website:${{ steps.meta.outputs.tags }}
+          # tags: ${{ secrets.ACR_NAME }}/contoso-website:${{ steps.meta.outputs.tags }}
+          tags: ${{ secrets.ACR_NAME }}/contoso-website:tagsName
