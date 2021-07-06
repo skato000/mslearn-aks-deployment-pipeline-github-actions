@@ -40,4 +40,4 @@ jobs:
         with: 
           push: true
           # tags: ${{ secrets.ACR_NAME }}/contoso-website:${{ steps.meta.outputs.tags }}
-          tags: ${{ secrets.ACR_NAME }}/contoso-website:tagsName
+          tags: ${{ secrets.ACR_NAME }}/contoso-website:${GITHUB_REF#refs/tags/}
