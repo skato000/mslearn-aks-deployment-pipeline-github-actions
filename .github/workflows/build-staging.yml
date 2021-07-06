@@ -56,7 +56,7 @@ jobs:
           #secrets:
           #secret-files:
           #ssh:
-          tags: contosocontainerregistry8082.azurecr.io/contoso-website:latest
+          tags: ${{ secrets.ACR_NAME }}/contoso-website:latest
           #target:
           #github-token:
           #repository: contoso-website
