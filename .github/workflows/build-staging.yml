@@ -52,7 +52,7 @@ jobs:
           #no-cache:
           #platforms:
           #pull:
-          #push:
+          push:true
           #secrets:
           #secret-files:
           #ssh:
