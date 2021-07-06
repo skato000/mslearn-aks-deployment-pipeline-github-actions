@@ -44,7 +44,7 @@ jobs:
           #builder:
           #cache-from:
           #cache-to:
-          context: .
+          #context: .
           #file:
           #labels:
           #load:
@@ -52,7 +52,7 @@ jobs:
           #no-cache:
           #platforms:
           #pull:
-          push:true
+          push: true
           #secrets:
           #secret-files:
           #ssh:
