@@ -7,6 +7,7 @@ on:
 
 jobs:
   build_push_image:
+    if: contains(github.event.pull_request.labels.*.name, 'spin up environment')
     runs-on: ubuntu-latest
 
     steps:
@@ -22,12 +23,14 @@ jobs:
           tags: ${{ github.sha }}
 
   deploy: 
-    if: contains(github.event.pull_request.labels.*.name, 'spin up environment')
     runs-on: ubuntu-latest
     needs: build_push_image
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Get the pull_request number
+        run: echo "PR_NUMBER=$(echo $GITHUB_REF | sed -e 's/[^0-9]//g') >> $GITHUB_ENV
 
       - name: Install helm
         uses: Azure/setup-helm@v1
@@ -49,7 +52,7 @@ jobs:
             --create-namespace \
             --atomic \
             --wait \
-            --namespace pr-${{ github.sha }} \
+            --namespace pr-${{ env.PR_NUMBER }} \
             contoso-website \
             ./kubernetes/contoso-website \
             --set image.registry=${{ secrets.ACR_NAME }} \
@@ -62,6 +65,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Get the pull_request number
+        run: echo "PR_NUMBER=$(echo $GITHUB_REF | sed -e 's/[^0-9]//g') >> $GITHUB_ENV
 
       - name: Install helm
         uses: Azure/setup-helm@v1
@@ -79,5 +85,5 @@ jobs:
       - name: Run Helm Deploy
         run: | 
           helm uninstall \
-            --namespace pr-${{ github.sha }} \
+            --namespace pr-${{ env.PR_NUMBER }} \
             contoso-website \
