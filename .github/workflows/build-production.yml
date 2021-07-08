@@ -29,6 +29,8 @@ jobs:
         # echo use env.TAG ${{ env.TAG }} # 別のStepで v*.*.*
         # echo use github.event.ref ${{ github.event.ref }} # refs/tags/v*.*.*
         # echo use github.event.release.tag_name ${{ github.event.release.tag_name }} $ empty
+        env:
+          TAG: ${GITHUB_REF/refs\/tags\//}
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v1.1.0
@@ -47,6 +49,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Get the tag name
+        id: tag_name
         run: echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
       - name: Install helm
@@ -62,6 +65,12 @@ jobs:
           resource-group: mslearn-gh-pipelines-1359
           cluster-name: contoso-video
 
+      - name: Debug env
+        run: |
+          echo env.TAG ${{ env.TAG }}
+          echo jobs.build_push_image.TAG ${{ jobs.build_push_image.env.TAG }}
+          echo jobs.build_push_image.steps[*].env.TAG ${{ jobs.build_push_image.steps[*].env.TAG }}
+          echo jobs.build_push_image.steps[tag_name].env.TAG ${{ jobs.build_push_image.steps[tag_name].env.TAG }}
       - name: Run Helm Deploy
         run: | 
           helm upgrade \
