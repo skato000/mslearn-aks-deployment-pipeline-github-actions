@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  registry: ContosoContainerRegistry8082
+  registry: contosocontainerregistry8082
   name: contoso-website 
   tag: latest
 
