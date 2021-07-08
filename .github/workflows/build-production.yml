@@ -73,5 +73,5 @@ jobs:
             contoso-website \
             ./kubernetes/contoso-website \
             --set image.registry=${{ secrets.ACR_NAME }} \
-            --set image.tag=${{ env.TAG }} \
+            --set image.tag=${{ jobs.build_push_image.env.TAG }} \
             --set dns.name=${{ secrets.DNS_NAME }}
