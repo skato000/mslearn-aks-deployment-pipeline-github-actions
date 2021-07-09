@@ -25,6 +25,12 @@ Taxonomies for products and languages: https://review.docs.microsoft.com/new-hop
 
 This is the base demonstration for the "Create a Deployment Pipeline with AKS and GitHub Actions" learn module.
 
+## Status
+| environment       | status                                |
+|-------------------|--------------------------------------------|
+| `staging`             | [![Build and push the latest build to staging](https://github.com/skato000/mslearn-aks-deployment-pipeline-github-actions/actions/workflows/build-staging.yml/badge.svg)](https://github.com/skato000/mslearn-aks-deployment-pipeline-github-actions/actions/workflows/build-staging.yml) |
+| `production`             | [![Build and push the tagged build to production](https://github.com/skato000/mslearn-aks-deployment-pipeline-github-actions/actions/workflows/build-production.yml/badge.svg)](https://github.com/skato000/mslearn-aks-deployment-pipeline-github-actions/actions/workflows/build-production.yml) |
+
 ## Summary
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
